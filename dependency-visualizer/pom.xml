@@ -44,6 +44,7 @@
 
     <properties>
         <findbugs.exclude>${project.basedir}/exclude.xml</findbugs.exclude>
+        <legal.doc.source>../</legal.doc.source>
     </properties>
 
     <build>
@@ -59,6 +60,34 @@
                 <directory>${basedir}/src/main/resources</directory>
             </resource>
         </resources>
+        <plugins>
+           <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                   <execution>
+                            <id>add-legal-resource</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>add-resource</goal>
+                            </goals>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>${legal.doc.source}</directory>
+                                        <includes>
+                                            <include>NOTICE.md</include>
+                                            <include>LICENSE.md</include>
+                                        </includes>
+                                        <targetPath>META-INF</targetPath>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                  </executions>
+            </plugin> 
+        </plugins>
     </build>
     
     <dependencies>
