@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.glassfish.hk2</groupId>
         <artifactId>hk2-extra-parent</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.4-SNAPSHOT</version>
     </parent>
     <artifactId>hk2-dependency-verifier</artifactId>
     <name>HK2 dependency verifier</name>
@@ -66,6 +66,7 @@
             </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>org.glassfish.hk2</groupId>
