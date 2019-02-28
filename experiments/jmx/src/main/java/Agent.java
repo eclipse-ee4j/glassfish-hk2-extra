@@ -91,7 +91,7 @@ public class Agent {
         // this interceptor to our MasterMBeanServerInterceptor so that no
         // MBeans are lost.
         //
-        final MBeanServerInterceptor defaultInterceptor = beanServer.getMBeanServerInterceptor();
+        final MBeanServerInterceptor defaultInterceptor = (MBeanServerInterceptor) beanServer.getMBeanServerInterceptor();
 
         // We get the MBeanServerDelegate. We will pass the MBeanServerDelegate
         // to our FileMBeanServerInterceptor so that we can fake the creation

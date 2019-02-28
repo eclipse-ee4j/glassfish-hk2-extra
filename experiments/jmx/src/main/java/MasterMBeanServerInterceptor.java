@@ -16,6 +16,7 @@
 
 import com.sun.jmx.interceptor.DefaultMBeanServerInterceptor;
 import com.sun.jmx.interceptor.MBeanServerInterceptor;
+import java.io.ObjectInputStream;
 
 import javax.management.Attribute;
 import javax.management.AttributeList;
@@ -35,12 +36,13 @@ import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.QueryExp;
 import javax.management.ReflectionException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.management.OperationsException;
+import javax.management.loading.ClassLoaderRepository;
 
 /**
  * Implements a MasterMBeanServerInterceptor that receives all the requests
@@ -144,12 +146,12 @@ public class MasterMBeanServerInterceptor implements MBeanServerInterceptor {
         }
     }
 
-    public ObjectInstance createMBean(String className, ObjectName name) throws ReflectionException, InstanceAlreadyExistsException, MBeanException, NotCompliantMBeanException, IOException {
+    public ObjectInstance createMBean(String className, ObjectName name) throws ReflectionException, InstanceAlreadyExistsException, MBeanException, NotCompliantMBeanException {
         checkRegistration(name);
         return choose(name).createMBean(className, name);
     }
 
-    public ObjectInstance createMBean(String className, ObjectName name, ObjectName loaderName) throws ReflectionException, InstanceAlreadyExistsException, MBeanException, NotCompliantMBeanException, InstanceNotFoundException, IOException {
+    public ObjectInstance createMBean(String className, ObjectName name, ObjectName loaderName) throws ReflectionException, InstanceAlreadyExistsException, MBeanException, NotCompliantMBeanException, InstanceNotFoundException {
         checkRegistration(name);
         return choose(name).createMBean(className, name, loaderName);
     }
@@ -403,5 +405,37 @@ public class MasterMBeanServerInterceptor implements MBeanServerInterceptor {
     //
     public final ClassLoader getClassLoaderFor(ObjectName name) throws InstanceNotFoundException {
         return choose(name).getClassLoaderFor(name);
+    }
+
+    public Object instantiate(String className) throws ReflectionException, MBeanException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object instantiate(String className, ObjectName loaderName) throws ReflectionException, MBeanException, InstanceNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object instantiate(String className, Object[] params, String[] signature) throws ReflectionException, MBeanException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object instantiate(String className, ObjectName loaderName, Object[] params, String[] signature) throws ReflectionException, MBeanException, InstanceNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ObjectInputStream deserialize(ObjectName name, byte[] data) throws InstanceNotFoundException, OperationsException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ObjectInputStream deserialize(String className, byte[] data) throws OperationsException, ReflectionException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ObjectInputStream deserialize(String className, ObjectName loaderName, byte[] data) throws InstanceNotFoundException, OperationsException, ReflectionException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ClassLoaderRepository getClassLoaderRepository() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
