@@ -60,6 +60,10 @@
         </developer>
     </developers>
 
+    <properties>
+         <legal.doc.source>../</legal.doc.source>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -167,6 +171,32 @@
                     </execution>
                 </executions>
             </plugin>
+           <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                   <execution>
+                            <id>add-legal-resource</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>add-resource</goal>
+                            </goals>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>${legal.doc.source}</directory>
+                                        <includes>
+                                            <include>NOTICE.md</include>
+                                            <include>LICENSE.md</include>
+                                        </includes>
+                                        <targetPath>META-INF</targetPath>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                  </executions>
+            </plugin> 
             <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
