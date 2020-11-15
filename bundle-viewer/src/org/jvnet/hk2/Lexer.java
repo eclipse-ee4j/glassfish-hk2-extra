@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2020 Contributors to Eclipse Foundation. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,7 +35,7 @@ public class Lexer {
      */
     public String consume(String s) {
         if(!str.startsWith(s))
-            throw new IllegalStateException("Expecting "+s+" bout found "+str);
+            throw new IllegalStateException("Expecting "+s+" but found "+str);
         str = str.substring(s.length());
         return s;
     }
