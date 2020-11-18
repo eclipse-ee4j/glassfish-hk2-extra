@@ -36,8 +36,6 @@ apiVersion: v1
 kind: Pod
 metadata:
 spec:
-  securityContext:
-    runAsUser: 1000100000
   volumes:
     - name: maven-repo-shared-storage
       persistentVolumeClaim:
@@ -46,7 +44,7 @@ spec:
       emptyDir: {}
   containers:
   - name: jnlp
-    image: jenkins/jnlp-slave:alpine
+    image: eclipsecbijenkins/basic-agent
     imagePullPolicy: IfNotPresent
     volumeMounts:
     env:
