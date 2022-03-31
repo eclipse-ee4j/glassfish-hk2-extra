@@ -16,15 +16,21 @@
 
 package org.jvnet.hk2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-public class LexerTest {
+class LexerTest {
     private static String KNOWN_EXPORTS_ENTRY = "jakarta.ejb.spi;uses:=\"jakarta.ejb,jakarta.ejb.embeddable\";version=\"4.0.0\",jakarta.ejb;uses:=\"jakarta.transaction\";version=\"4.0.0\",jakarta.ejb.embeddable;uses:=\"jakarta.ejb.spi,jakarta.ejb,javax.naming\";version=\"4.0.0\"";
 
-    public void testFinding3ExportedPackages() {
+    @Test
+    void shouldFind3ExportedPackages() {
         Lexer lexer = new Lexer(KNOWN_EXPORTS_ENTRY);
 
         List<ExportedPackage> packages = new ArrayList<ExportedPackage>();
@@ -32,21 +38,24 @@ public class LexerTest {
             packages.add(new ExportedPackage(lexer));
         }
 
-        assert packages.size() == 3;
+        assertEquals(3, packages.size());
     }
 
-    public void test1stExportedPackage() {
+    @Test
+    void shouldFind1stExportedPackage() {
         testFoundExportedPackage(KNOWN_EXPORTS_ENTRY, 0, "jakarta.ejb.spi",
                 Arrays.asList("jakarta.ejb", "jakarta.ejb.embeddable"), "4.0.0");
 
     }
 
-    public void test2ndExportedPackage() {
+    @Test
+    void shouldFind2ndExportedPackage() {
         testFoundExportedPackage(KNOWN_EXPORTS_ENTRY, 1, "jakarta.ejb",
                 Arrays.asList("jakarta.transaction"), "4.0.0");
     }
 
-    public void test3rdExportedPackage() {
+    @Test
+    void shouldFind3rdExportedPackage() {
         testFoundExportedPackage(KNOWN_EXPORTS_ENTRY, 2, "jakarta.ejb.embeddable",
                 Arrays.asList("jakarta.ejb.spi", "jakarta.ejb", "javax.naming"), "4.0.0");
     }
@@ -62,9 +71,9 @@ public class LexerTest {
 
         ExportedPackage testedPackage = packages.get(packageIndex);
 
-        assert testedPackage.name.equals(expectedName);
-        assert testedPackage.uses.containsAll(expectedUses);
-        assert testedPackage.version.equals(expectedVersion);
+        assertEquals(expectedName, testedPackage.name);
+        assertTrue(testedPackage.uses.containsAll(expectedUses));
+        assertEquals(expectedVersion, testedPackage.version);
     }
 }
 
