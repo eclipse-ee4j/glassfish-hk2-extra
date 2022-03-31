@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,14 +51,6 @@ public final class ImportedPackage extends Named implements Comparable<ImportedP
             version = null;
         if(sc.at(','))
             sc.consume(",");
-    }
-
-    private String unquote(String s) {
-        if(s.startsWith("\"")) {
-            assert s.endsWith("\"");
-            return s.substring(1,s.length()-1);
-        }
-        return s;
     }
 
     public int compareTo(ImportedPackage that) {
