@@ -61,14 +61,6 @@ public class ExportedPackage extends Named implements Comparable<ExportedPackage
             sc.consume(",");
     }
 
-    private String unquote(String s) {
-        if(s.startsWith("\"")) {
-            assert s.endsWith("\"");
-            return s.substring(1,s.length()-1);
-        }
-        return s;
-    }
-
     public int compareTo(ExportedPackage that) {
         return this.name.compareTo(that.name);
     }
