@@ -28,6 +28,7 @@ import java.util.StringTokenizer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
@@ -106,6 +107,13 @@ public class DotGenerator {
 		File file = new File(this.options.input);
 		debug("file " + file);
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        String FEATURE = "http://apache.org/xml/features/disallow-doctype-decl";
+        try {
+            dbf.setFeature(FEATURE, true);
+        } catch (ParserConfigurationException e) {
+            throw new IllegalStateException("ParserConfigurationException was thrown. The feature '"
+                + FEATURE + "' is not supported by your XML processor.", e);
+        }
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		doc = db.parse(file);
 		doc.getDocumentElement().normalize();
