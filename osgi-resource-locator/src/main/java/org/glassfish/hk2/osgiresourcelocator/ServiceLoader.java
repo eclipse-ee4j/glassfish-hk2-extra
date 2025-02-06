@@ -105,6 +105,7 @@ public abstract class ServiceLoader {
      * @return classes corresponding to entries in META-INF/services file for the service class.
      */
     public static <T> Iterable<Class> lookupProviderClasses(Class<T> serviceClass) {
+        if (_me == null) return null;
         return _me.lookupProviderClasses1(serviceClass);
     }
 
