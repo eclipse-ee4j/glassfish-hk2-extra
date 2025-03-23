@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.glassfish.hk2</groupId>
         <artifactId>hk2-extra-parent</artifactId>
-        <version>3.0.0-SNAPSHOT</version>
+        <version>1.0.4</version>
     </parent>
     <artifactId>osgi-resource-locator</artifactId>
     <name>HK2 OSGi resource locator</name>
